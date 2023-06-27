@@ -1,6 +1,7 @@
 import { useState, useEffect} from 'react'
 import apiClent from '../Services/api-client';
 import { CanceledError } from 'axios';
+import apiClient from '../Services/api-client';
 
 
 export interface Platform{
@@ -30,7 +31,7 @@ const useGames = () => {
     useEffect(() => {
         const controller = new AbortController();
         setLoading(true);
-      apiClent
+      apiClient
         .get<FetchGamesResponse>("/games", {signal: controller.signal})
         .then((res) => {
 
