@@ -1,5 +1,5 @@
 import { useState, useEffect} from 'react'
-import apiClent from '../Services/api-clent';
+import apiClent from '../Services/api-client';
 import { CanceledError } from 'axios';
 
 
