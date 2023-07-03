@@ -4,7 +4,7 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import { SiDigikeyelectronics } from "react-icons/si";
 import GameCardContainer from "./GameCardContainer";
-import Data from "../hooks/useData";
+import { FetchResponse } from "../Services/api-client";
 import { Genre } from "../hooks/useGenres";
 import { GameQuery } from "../App";
 
@@ -16,7 +16,7 @@ const GameGrid = ({ gameQuery }: Props) => {
   const { data, error, isLoading } = useGames(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6];
   
-if(error) return <Text>{error}</Text>
+if(error) return <Text>{error.message}</Text>
   return (
     <>
       {error && <Text>{error}</Text>}
@@ -32,7 +32,7 @@ if(error) return <Text>{error}</Text>
             </GameCardContainer>
           ))}
 
-        {data.map((data: Game) => (
+        {data?.results.map((data: Game) => (
           <GameCardContainer key={data.id}>
             <GameCard game={data}></GameCard>
           </GameCardContainer>
