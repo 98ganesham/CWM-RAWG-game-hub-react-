@@ -33,7 +33,9 @@ useInfiniteQuery<FetchResponse<Game>, Error >({
 staleTime: 24 * 60 * 60 *1000,
 getNextPageParam: (lastPages, allPages) =>{
   return lastPages.count ? allPages.length +1: undefined;
+
 }
+
    
 })
 
