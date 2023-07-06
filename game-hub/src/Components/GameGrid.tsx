@@ -1,6 +1,3 @@
-// I have to rebuild page.results because this showing error every time
-
-
 import {
   SimpleGrid,
   Spinner,
@@ -28,7 +25,7 @@ const GameGrid = () => {
 
   const fetchedGamesCount =
     data?.pages.reduce(
-      (total) => total,
+      (total, page) => total + page.results.length,
       0
     ) || 0;
 
@@ -52,7 +49,7 @@ const GameGrid = () => {
           ))}
         {data?.pages.map((page, index) => (
           <React.Fragment key={index}>
-            {page.results?.map((game) => (
+            {page.results.map((game) => (
               <GameCardContainer key={game.id}>
                 <GameCard game={game} />
               </GameCardContainer>
