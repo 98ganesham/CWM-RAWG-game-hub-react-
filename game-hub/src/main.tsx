@@ -4,10 +4,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-
-import App from "./App";
 import theme from "./Components/theme";
 import "./index.css";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes";
 
 const queryClinet = new QueryClient();
 
@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         initialColorMode={theme.config.initialColorMode}
       ></ColorModeScript>
       <QueryClientProvider client={queryClinet}>
-      <App />
+       <RouterProvider router ={router} />
       <ReactQueryDevtools/>
       </QueryClientProvider>
       
