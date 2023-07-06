@@ -1,9 +1,28 @@
-import React from 'react'
+import {
+    GridItem,
+    Heading,
+    SimpleGrid,
+    Spinner,
+    Text
+} from '@chakra-ui/react';
+import { useParams } from 'react-router-dom';
 
-const GameDetailPage = () => {
-  return (
-    <div>GameDetailPage</div>
-  )
-}
-
-export default GameDetailPage
+import useGame from '../hooks/useGame';
+  
+  const GameDetailPage = () => {
+    const { slug } = useParams();
+    const { data: game, isLoading, error } = useGame(slug!);
+  
+    if (isLoading) return <Spinner />;
+  
+    if (error || !game) throw error;
+  
+    return (
+      <>
+      <Heading>{game.name}</Heading>
+      <Text>{game.description_raw}</Text>
+      </>
+    );
+  };
+  
+  export default GameDetailPage;
